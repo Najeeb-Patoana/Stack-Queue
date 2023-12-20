@@ -349,8 +349,8 @@ class Queue_linkedlist {
 				dequeue();
 			}
 		}
-
 		void enque(int val) {
+
 			Node* newNode = new Node(val);
 			if (isEmpty()) {
 				front = rear = newNode;
@@ -358,6 +358,7 @@ class Queue_linkedlist {
 				rear->next = newNode;
 				rear = newNode;
 			}
+			rear->next = front;
 			size++;
 		}
 
@@ -366,17 +367,17 @@ class Queue_linkedlist {
 				cout << "\t\t\t\tQueue is empty\n";
 				return -1;
 			}
-
 			int x = front->data;
 			Node* temp = front;
-			front = front->next;
-			delete temp;
 
-			if (front == NULL) {
-				rear = NULL;
+			if (front == rear) {
+				front = rear = NULL;
+			} else {
+				front = front->next;
+				rear->next = front;
 			}
+			delete temp;
 			size--;
-
 			return x;
 		}
 		bool isEmpty() {
@@ -409,12 +410,23 @@ class Queue_linkedlist {
 			}
 			Node* temp = front;
 			cout << "\t\t\t\tQueue elements: ";
-			while (temp != NULL) {
-				cout << temp->data << " ";
+			do {
+				cout<<"\t\t\t\t" << temp->data << " ";
 				temp = temp->next;
-			}
+			} while (temp != front);
 			cout << endl;
 		}
+
+		void reverse_with_stack(Queue_linkedlist &q) {
+			Stack_linkedlist s;
+			while (!q.isEmpty()) {
+				s.push(q.dequeue());
+			}
+			while (!s.isEmpty()) {
+				q.enque(s.pop());
+			}
+		}
+
 };
 int main() {
 	int main_choice;
@@ -739,7 +751,8 @@ int main() {
 								cout << "\t\t\t\t5. Check if queue is empty" << endl;
 								cout << "\t\t\t\t6. Get queue size" << endl;
 								cout << "\t\t\t\t7. To display"<<endl;
-								cout << "\t\t\t\t8. Go back to Singly LinkedList Functions" << endl;
+								cout << "\t\t\t\t8. To reverseQueue() using STACK"<<endl;
+								cout << "\t\t\t\t9. Go back to Singly LinkedList Functions" << endl;
 								cout << "\t\t\t\tEnter your choice: ";
 								cin >> queue_functions;
 
@@ -788,12 +801,20 @@ int main() {
 										queue_linkedlist.linkedlist_display_queue();
 										break;
 									}
-									case 8:
+									case 8: {
+										cout << "\t\t\t\tOriginal Queue: ";
+										queue_linkedlist.linkedlist_display_queue();
+										queue_linkedlist.reverse_with_stack(queue_linkedlist);
+										cout << "\t\t\t\tReversed Queue: ";
+										queue_linkedlist.linkedlist_display_queue();
+										break;
+									}
+									case 9:
 										break;
 									default:
 										cout << "\t\t\t\tInvalid choice!" << endl;
 								}
-							} while (queue_functions!= 8);
+							} while (queue_functions!= 9);
 							break;
 						}
 						case 3:
