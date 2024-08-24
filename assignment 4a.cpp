@@ -460,13 +460,13 @@ int main() {
 							int stack_functions;
 							do {
 								cout << "\n\t\t\t\tArray Stack Functions:" << endl;
-								cout << "\t\t\t\t1. Push" << endl;
-								cout << "\t\t\t\t2. Pop" << endl;
-								cout << "\t\t\t\t3. Peek" << endl;
+								cout << "\t\t\t\t1. Push into Array" << endl;
+								cout << "\t\t\t\t2. Pop from Array" << endl;
+								cout << "\t\t\t\t3. Peek value of Array" << endl;
 								cout << "\t\t\t\t4. Check if stack is empty" << endl;
 								cout << "\t\t\t\t5. Check if stack is full" << endl;
 								cout << "\t\t\t\t6. Get stack size" << endl;
-								cout << "\t\t\t\t7. To display"<<endl;
+								cout << "\t\t\t\t7. To display Array"<<endl;
 								cout << "\t\t\t\t8. To Check balancedParenthesis" << endl;
 								cout << "\t\t\t\t9. To Convert infix To Postfix" << endl;
 								cout << "\t\t\t\t10. Go back to Array Functions" << endl;
